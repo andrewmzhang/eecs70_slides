@@ -1,0 +1,137 @@
+\documentclass{beamer}
+\usetheme{Berkeley}
+
+\title{Disc 2a}
+\author{Andy}
+\institute{UC Berkeley}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{Revist: Disc 1d, Probem 1. Well Ordering Principle}
+
+    \begin{enumerate}[<+->]
+        \item WOP says $\exists x : \forall y \in S : x \leq y$
+        \item In English: There exists a smallest element in your set (of Naturals).
+        \item $(\exists s \in S, 0 \leq s \leq z) \implies \exists x : \forall y \in S x \leq y$
+        \item In English: If you set contains an element between $[0, z]$, then your set has a smallest
+        element
+        \item Base: If you set contains 0, your set has a smallest element. This is true because 0 is by
+        definition the smallest natural, so your set contains the smallest possible element.
+        \item If your set has a 0 or 1, your set has a smallest element.
+        \item If your set has a 0, 1, or 2, your set has a smallest element.
+        \item If your set as a number between [0, 100], ...
+        \item If your set has a number between $[0, \propto)$, ...
+    \end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Revisit: Disc 1d, Problem 1. WOP (cont.)}
+    \begin{enumerate}[<+->]
+        \item If your set has a number between $[0, \propto)$, your set has a smallest element.
+        \item If your set is non-empty, your set has a smallest element.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Revisit: Disc 1f, Problem 1. WOP (ignore.)}
+    \begin{enumerate}[<+->]
+        \item Inductive Hypo: $(\exists s \in S, 0 \leq s \leq z) \implies \exists x : \forall y \in S x \leq y$
+        \item Inductive Step: Lets prove $(\exists s \in S, 0 \leq s \leq z+1) \implies WOP$.
+        \item Case 1. The smallest element in $S$ is $z+1$. Then $z+1$ is the minimum element.
+        \item Case 2. The smallest element is less than $z+1$, or between $[0, z]$.
+        Then we know a smallest element in $S$ exists by inductive hypothesis.
+        \item What should you change so that the proof works by simple induction (as opposed to strong
+induction)?
+        \item For all sets $S$ that contain a number $z'$ such that $z' \leq z$, then $S$ contains
+        a smallest element.
+
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Problem 1a}
+    \begin{enumerate}[<+->]
+        \item Problem: Consider a tree with $n \geq 3$ vertices.
+        What is the largest possible number of leaves the tree could have?
+        Prove that this maximum $m$ is possible to achieve, and further that there cannot
+        exist a tree with more than $m$ leaves.
+        \item Hint: Why can't a tree have $n$ leaves? Pretend there does exist a tree
+        with $n$ leaves. What is each vertice's degree? What is the definition of a tree?
+        \item Hint: A tree, by defintion, has a unique, finite length path between 2 vertices.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Problem 1a soln}
+    \begin{enumerate}[<+->]
+        \item Problem: Consider a tree with $n \leq 3$ vertices.
+        What is the largest possible number of leaves the tree could have?
+        Prove that this maximum $m$ is possible to achieve, and further that there cannot
+        exist a tree with more than $m$ leaves.
+        \item We know we can construct a tree with $n \geq 3$ nodes and make it have
+        $n - 1$ leaves. Do a star graph!
+        \item We can't have a tree with $n$ leaves.
+        \item Assume such a tree with $n$ leaves exists.
+        \item Each vertice has $1$ edge, since each vertex has degree $1$.
+        \item Choose an arbitrary $x$ vertex, it has a neighbor, $y$.
+        \item $y$ also has only $1$ edge, and it connects to $x$.
+        \item The there cannot be a path to $z$, a third arbitrary vertex.
+        \item Defintion of tree has been violated!
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Problem 1b}
+    \begin{enumerate}[<+->]
+        \item Problem: Prove that every tree with $n \geq 2$ has at least 2 leaves.
+        \item Hint: A tree, by defintion, has a unique, finite length path between 2 vertices. We can
+        assume (by WOP) that there is a longest path.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Problem 1b soln}
+    \begin{enumerate}[<+->]
+        \item Problem: Prove that every tree with $n \geq 2$ has at least 2 leaves.
+        \item Assume the longest path is from x to y (if there are many longest paths, choose one).
+        \item x and y are leaves.
+        \item Assume that x is not a leaf. It must have degree at least 2. Thus it has a neighbor (we'll call z).
+        \item z must not appear in the path from x to y. Why?
+        \item We have a cycle. x to a to ... to z to x makes a cycle.
+        \item Thus x must be a leaf!
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Problem 2}
+    \begin{enumerate}[<+->]
+        \item a. Draw a cube and its dual in a planar graph form.
+        \item b. Draw a spanning tree for a cube in planar graph form. Do the same for the dual.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Problem 3}
+    \begin{enumerate}[<+->]
+        \item Hint: Try to prove this for a graph on 7 vertices.
+        \item Hint: Where are there definetly not any edges?
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Problem 4}
+    \begin{enumerate}[<+->]
+        \item a. Hint: What size is (VxV)?
+        \item b. Hint: A planar graph has at most 3v-6 edges.
+    \end{enumerate}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,126 @@
+\documentclass{beamer}
+\usepackage{pifont}
+\newcommand{\xmark}{\ding{55}}
+\usetheme{Boadilla}
+
+\title{Disc 2d}
+\author{Andy}
+\institute{UC Berkeley}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+\begin{frame}
+    \frametitle{Mini Lecture: One Time Pad}
+
+    \begin{enumerate}[<+->]
+        \item Unbreakable encryption method
+        \item "a" + "a" = "b", "a" + "c" = "d"
+        \item Alice and Bob agree on a random cipher as long as the message 
+        \item "addekficjladkfjghe"
+        \item "Plain Text" + cipher = encrypted text
+        \item "abc" what does this decrypt to?
+        \item "dog", "cat", "bob", "lol",.... any 3 letter word...
+        \item Discovered by a Civil War Vet / Stanford Trustee, AT+T, some Russians, ... etc.
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Mini Lecture: RSA}
+
+    \begin{enumerate}[<+->]
+        \item James Ellis, Malcolm Williamson of GCHQ discover Diffie-Hellman key exchange, 1969
+        \item This method allows 2 parties to agree on some number $n$ without revealing it
+        \item Clifford Cocks, of GCHQ, discovers RSA, 1973
+        \item Diffie and Hellman rediscover DH key exchange, 1976
+        \item Diffie and Hellman can't figure out a good 1 way function.
+        \item Ron Rivest, Adi Shamir, and Leonard Adleman rediscover RSA, 1977
+        \item Rivest comes up with a good one way function after getting drunk at Passover
+        \item Those GCHQ guys eventually get credit for their work in 1997.
+        \item RSA is the most copied algorithm in the world!
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Mini Lecture: RSA}
+
+    \begin{enumerate}[<+->]
+        \item Analogy:
+        \item Combination locks: Anyone can lock them, only the owner can unlock them
+        \item You want to send Andy a message. You ask Andy for his combo lock and a box
+        \item You stuff your message in the box, and slam the lock shut
+        \item Only Andy knows the combination, so only he can open it.
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Mini Lecture: RSA Scheme}
+
+    \begin{enumerate}[<+->]
+        \item $m$ is message, $N, e$ are 2 public keys, $d$ is secret private key
+        \item Bob wants to send Alice a secret message
+        \item Alice will generate $N, e, d$, and share $N, e$ with Bob.
+        \item Bob will calculate $m^{e}$ mod $N$ and send the result to Alice
+        \item Call the encrypted message $c$, for ciphertext
+        \item Alice will do $c^{d} \equiv m^{e^{d}} \equiv m^{ed} \equiv m$ mod $N$.
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Mini Lecture: Totient}
+
+    \begin{enumerate}[<+->]
+        \item $\phi(N)$ = number of positive integers relatively prime to $n$, up to $n$.
+        \item $\phi(9) = 6$, since $1, 2, 4, 5, 7, 8$
+        \item Totient is hard to calculate... unless you know the prime factors!
+        \item $\phi(N) = (p-1)(q-1)(r-1)(s-1)...$ where $p,q,r,s, ...$ are prime factors
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Mini Lecture: RSA Generation}
+
+    \begin{enumerate}[<+->]
+        \item Alice will generate $N, e, d$, and share $N, e$ with Bob.
+        \item $p, q$ = large prime numbers
+        \item $N = pq$
+        \item Calclate $\phi(N) = (p - 1)(q -1)$
+        \item Choose $e$ st it is relatively prime to $\phi(N)$
+        \item $d \equiv e^{-1}$ mod $\phi(N)$
+        \item \alert{RSA is secure!!!!!!}
+        \item Lets try to break it. We try to solve for $d$. Guess and check? \xmark
+        \item We have $e$. We need $\phi(N)$, What is $\phi$. Guess and check? \xmark
+        \item If we could factor $N$ into $p,q$, we can get $\phi$. 
+        \item Factoring is guessing and checking... \xmark
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Q3}
+
+    \begin{enumerate}[<+->]
+        \item $d = e^{-1}$ mod $(p-1)(q-1)(r-1)$. 
+        \item $x^{ed} - x \equiv 0 mod N$
+        \item $x(x^{ed - 1} - 1)$ must be divisible by $p, q, r$
+        \item $x(x^{k(p-1)(q-1)(r-1) + 1 - 1} - 1)$ must be divisible by $p, q, r$
+        \item $x(x^{k(p-1)(q-1)(r-1)} - 1)$ must be divisible by $p, q, r$
+        \item Lets show that the above is divisible by $p$.
+        \item 2 cases. If $x$ is divisible by $p$, we are done.
+        \item If not, then use Fermat's Little Theorum on the right term with mod $p$
+        \item $(x^{p-1})^{k(q-1)(r-1)} - 1 \equiv 1 - 1 \equiv 0$ mod $p$.
+        \item Thus the eqn is divisble by $p$. Do the same for $q, r$.
+        \item \alert{Fact:} $x^{\phi{N}} \equiv 1$ mod $N$
+    \end{enumerate}
+
+\end{frame}
+
+\end{document}
