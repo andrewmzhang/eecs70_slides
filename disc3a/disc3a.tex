@@ -1,0 +1,117 @@
+\documentclass{beamer}
+\usetheme{Berkeley}
+
+\title{Disc 3a}
+\author{Andy}
+\institute{UC Berkeley}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{Implications of RSA}
+    
+    \begin{enumerate}[<+->]
+        \item 2 people can communicate securely despite eavesdroppers!
+        \item Eavesdropper CANNOT decipher the conversation
+        \item RSA is hard because factoring is ... hard?
+        \item \alert{No one has proven factoring is hard}
+        \item If you figured out factoring was hard, what would you do?
+        \item Keep it secret to yourself? But other people might be mean
+        \item Tell the US govt. Get taken out by the CIA.
+        \item Tell the world, crash online banking, online security, in minutes.
+        \item Its a cool hypothetical
+        \item Do let me know if you figure out factoring though!
+    \end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Minilecture: Interpolation}
+
+
+    \begin{enumerate}[<+->]
+        \item I want a function that's
+        \item $f(4) = 5$, $f(7) = 10$, $f(2) = 5$.
+        \item $\Delta_4(4) = 1$, $d(i) = 0 \forall i, i \neq 4$
+        \item $\Delta_7(7) = 1$, $d(i) = 0 \forall i, i \neq 7$
+        \item $\Delta_2(2) = 1$, $d(i) = 0 \forall i, i \neq 2$
+        \item How does this help?
+        \item $f(x) = 5*\Delta_4(x) + 10*\Delta_7(x) + 5 * \Delta_2(x)$
+        \item Sanity Check: $f(4) = 5 = 5 * \Delta_4(4) + 10 * \Delta_7(4) + 5 * \Delta_2(4)$
+        \item Sanity Check: $f(4) = 5 = 5 * 1 + 10 * 0 + 5 * 0$
+        \item $\Delta_i(x)$ is called a Delta function
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+
+    \frametitle{1. Count and Prove}
+
+    \begin{enumerate}[<+->]
+        \item CRT says a solution exists within $[0, 105)$
+        \item I need something that is 1 mod 3, 0 mod 5, 0 mod 7
+        \item $y_1 = (5  * 7) * ((5 * 7)^{-1} mod 3) = 35 * 2 = 70$.
+        \item Check: $35 \equiv 1$ mod 3. $35 \equiv 0$ mod 5. $35 \equiv 0$ mod 7.  
+        \item $y_2 = (3*7) * ((3*7)^{-1} mod 5) = 21$
+        \item $y_3 = (3 * 5) * ((3 * 5)^{-1} mod 7) = 15$
+        \item $x = 2 * y_1 + 3 * y_2 + 4 * y_3$ mod 105
+        \item $x \equiv 263 \equiv 53$ mod 105
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+
+    \frametitle{1. Count and Prove}
+    \begin{enumerate}[<+->]
+        \item Prove $n^{80} \equiv 1$ mod 935, then 5, 11, 17 $\nmid n$.
+        \item $n^{80} \equiv 1$ means $n^{80} = 935k + 1$ for some $k$.
+        \item $n^{80} \equiv 1$ mod 5
+        \item Proof by contradiction:
+        \item Assume $5 \mid n$, then $n = 5j$, which means $n \equiv 0$ (mod 5).
+        \item Which means $n^{80} \equiv (5j)^{80} \equiv 0^{80} \equiv 0$ mod 5.
+        \item Repeat for 11, 17.
+    
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+
+    \frametitle{2}
+    \begin{enumerate}[<+->]
+        \item $p(x) - q(x) = 0$. How many solutions to this?
+        \item How many degrees to $p - q$? At most $max(\Delta_1, \Delta_2)$
+        \item $f(x) = (x - c)^2$, then $a = -2c$ and $b = c^2$, then $a^2 = 4c^2 = 4b$. 
+        \item If $f$ is even, 0. If $f$ is odd, 1.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+
+    \frametitle{3}
+    \begin{enumerate}[<+->]
+        \item If $f$ is even, 0. If $f$ is odd, could be 0.
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+
+    \frametitle{3}
+    \begin{enumerate}[<+->]
+        \item $P(x) = 4 * \Delta_1(x) + 3 * \Delta_2(x) + 0 * \Delta_5(x)$ mod 7
+        \item $\Delta_1(x) = \frac{(x - 2)(x-5)}{(1 - 2)(1-5)}$ mod 7
+        \item $\Delta_1(x) = \frac{(x - 2)(x-5)}{4}$. Division in a modspace?
+        \item $4^{-1} \equiv 2$ mod 7.
+        \item $\Delta_1(x) = 2 * (x - 2)(x-5)$.
+        \item $P(x) \equiv 4(2x^2 + 6) + 3(2x^2 +2x+3) \equiv 14x^2 + 6x + 33 \equiv 6x + 5$ mod 7
+    \end{enumerate}
+\end{frame}
+\end{document}

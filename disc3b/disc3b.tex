@@ -1,0 +1,112 @@
+\documentclass{beamer}
+\usepackage[]{media9}
+\usepackage{multimedia}
+\usetheme{Berkeley}
+
+\title{Disc 3b}
+\author{Andy}
+\institute{UC Berkeley}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Secret Sharing}
+
+    \begin{enumerate}[<+->]
+      \item Objective: Secret  is unknown unless "enough" people come together
+      \item Think nuclear launch codes
+      \item Polynomial of degree $d$ is defined on $d+1$ points (even in modspace)
+      \item Let $P(0)$ be the secret
+      \item Distribute $P(1), P(2), ..., P(k)$ st $k \geq d + 1$
+      \item $d+1$ people need to come together to solve for $P(0)$
+      \item Kind of like the 2 man rule on nuclear submarines
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Packet Loss}
+
+    \begin{enumerate}[<+->]
+      \item If original message is size $n$ and we drop $k$ packets, we need $n + k$ packets.
+      \item Proof: pretend the $n$ points code for points on a polynomial of degree $n-1$
+      \item We just need $n$ independent points!
+      \item Thus if we drop $k$ from $n + k$, we are still good!
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Berlekamp Welch}
+
+    \begin{enumerate}[<+->]
+      \item Invented by Lloyd Welch, and Elwyn Berlekamp
+      \item Berlekamp is a former UC Berkeley Professor (emeritus)
+      \item We need a way to recover from errors in messages
+      \item If original message is size $n$, and we have $k$ errors. We need $n + 2k$ packets
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Berlekamp Welch}
+
+    \begin{enumerate}[<+->]
+      \item $P(x)$ is true polynomial, we are trying to solve for this
+      \item $E(x)$ is error polynomial. $E(i) = 0$ iff $i$th packet was wrong
+      \item $r_i$ is received message (possibly with error)
+      \item $P(i)E(i) = r_i * E(i)$
+      \item $P(i)E(i)$ has $(n - 1) + k$, or $n+k$ unknown coeffs. 
+      \item $E(i)$ has degree $k$. First coeff is $1$, thus it has $k$ unkown coeffs.
+      \item $P(i)E(i) = r_i * E(i)$ has $n + 2k$ unknowns that require $n+2k$ equations
+    \end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Problem 3}
+
+    \begin{enumerate}[<+->]
+      \item Determine the form of $Q(x)E(x) = r_i * E(x)$
+      \item ie $Q(0)E(0) = d = 3(0+e) = r_0 * E(0)$
+      \item ie $Q(1)E(1) = a + b + c + d = 7(1+e) = r_1 * E(0)$
+      \item Then solve for $a, b, c, d, e$
+      \item Solve for $E(x)$
+      \item Solve for $P(x) = \frac{Q(x)}{E(x)}$
+      \item Get back the original message!!
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem 3}
+
+%  \href{run:hector.mp4?autostart&loop}{\includegraphics[width=\paperwidth,height=0.5625\paperwidth]{h.png}}
+
+%  \includemedia[
+%      activate=pageopen,
+%        width=240pt,height=150pt,
+%          addresource=hector.mp4,
+%          passcontext,
+%            flashvars={%
+%              src=hector.mp4      % same path as in addresource!
+%              %&scaleMode=stretch % removes black bars
+%              &autoPlay=true      % optional configuration
+%              &loop=true          % variables
+%              }
+%            ]{\fbox{Click!}}{VPlayer.swf}
+
+
+  \movie[label=show3,width=1.0\textwidth,poster
+         ,autostart,showcontrols,loop] 
+           {\includegraphics[width=1.0\textwidth]{h.png}}{hector.mp4}
+
+\end{frame}
+
+\end{document}
